@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Jabonilandia</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4caf50">
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(() => console.log('Service Worker registrado correctamente'));
+      }
+    </script>
+</head>
+<body>
+
+    <div id="auth-screen">
+        <h2>❤️¡BIENVENIDO!❤️</h2>
+      
+    </div>
+
+    <div id="calculator-screen">
+        <h1>Calculadora Jabonilandia</h1>
+        </div>
+
+    <script src="script.js"></script>
+
+</body>
+   <div id="overlay-bienvenida" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    
+    <img src="logo-512.png" alt="Logo Jabonilandia" style="width: 200px; margin-bottom: 20px;">
+    
+    <input type="password" id="token-input" placeholder="Introduce tu token">
+    <button onclick="verificarToken()">Acceder a Calculadora</button>
+</div>
+
+<div div="" style="box-sizing: border-box; display: flex; justify-content: center; padding: 10px; width: 100%;">
+  <div style="background-color: white; border-radius: 15px; border: 1px solid rgb(238, 238, 238); box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 15px; box-sizing: border-box; font-family: &quot;Segoe UI&quot;, Arial, sans-serif; margin: 0px auto; max-width: 600px; padding: 20px; width: 100%;">
+    <h2 style="color: #4caf50; margin-bottom: 5px; text-align: center;">🧼Calculadora Jabonilandia🧼</h2>
+    <p style="color: #666666; font-size: 14px; font-style: italic; margin-bottom: 20px; text-align: center;"> + Protocolo Extractos Alcohólicos</p>
+    <div style="background: rgb(249, 249, 249); border-radius: 8px; box-sizing: border-box; margin-bottom: 20px; padding: 15px; text-align: left;">
+      <label style="display: block; font-weight: bold; margin-bottom: 5px;">Sobreengrasado:</label> <select id="superFat" style="border-radius: 8px; border: 1px solid rgb(204, 204, 204); box-sizing: border-box; font-size: 16px; padding: 12px; width: 100%;">
+        <option value="0">
+          0% (Limpieza total)
+        </option>
+        <option value="0.05">
+          5% (Estándar - Piel normal)
+        </option>
+        <option selected="" value="0.08">
+          8% (Recomendado - Piel suave)
+        </option>
+        <option value="0.10">
+          10% (Piel muy seca / Bebés)
+        </option>
+      </select>
+    </div>
+    <div id="aceites-container">
+      <div class="fila-aceite" style="align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+        <select class="oilSelect" style="border-radius: 8px; border: 1px solid rgb(204, 204, 204); flex: 2 1 150px; font-size: 14px; min-width: 0px; padding: 10px;">
+          <option value="0.135">
+            Oliva virgen: 🫒 (0.135)
+          </option>
+          <option value="0.183">
+            Aceite de Coco: 🥥 (0.183)
+          </option>
+          <option value="0.142">
+            Aceite de Palma: 🌴(0.142)
+          </option>
+          <option value="0.139">
+           Oleina de Palma: 🌴 (0.144)
+          </option>
+          <option value="0.139">
+            Aceite Almendras 🥜 (0.139)
+          </option>
+          <option value="0.135">
+            Aceite de Girasol 🌻 (0.135)
+          </option>
+          <option value="0.128">
+            Aceite de Ricino 🌿 (0.128)
+          </option>
+          <option value="0.136">
+            Aceite de Maíz 🌽 (0.136)
+          </option>
+          <option value="0.135">
+            Aceite de Soya 🌾 (0.136)
+          </option>
+          <option value="0.137">
+            Manteca de Cacao 🍫 (0.137)
+          </option>
+          <option value="0.128">
+            Manteca de Karité: 🌰 (0.128)
+          </option>
+          <option value="0.141">
+            Sebo de Vaca 🐄 (0.141)
+          </option>
+          <option value="0.138">
+            Manteca de Cerdo: 🐷 (0.141)
+          </option>
+          <option value="0.067">
+            Cera de Abeja: 🐝 (0.067)
+          </option>
+          <option value="0.131">
+            Germen de Trigo 🌾 (0.131)
+          </option>
+          <option value="0.133">
+            Pepita de Uva 🍇 (0.133)
+          </option>
+          <option value="0.139">
+            Hueso Albaricoque 🍑 (0.139)
+          </option>
+        </select> <input aria-label="Cantidad en gramos" class="oilAmount" style="border-radius: 8px; border: 1px solid rgb(204, 204, 204); flex: 1 1 80px; font-size: 14px; min-width: 0px; padding: 10px;" type="number" /> <button onclick="if(document.querySelectorAll('.fila-aceite').length &gt; 1) this.parentElement.remove()" style="background: rgb(255, 82, 82); border-radius: 8px; border: medium; color: white; cursor: pointer; font-weight: bold; padding: 10px 15px;">✕</button>
+      </div>
+    </div><button onclick="agregarFila()" style="background-color: #f8f9fa; border-radius: 8px; border: 2px dashed rgb(76, 175, 80); color: #555555; cursor: pointer; font-weight: bold; margin-bottom: 20px; padding: 10px; width: 100%;">+ Añadir otro aceite</button> <button onclick="calcularTodo()" style="background-color: #4caf50; border-radius: 8px; border: medium; color: white; cursor: pointer; font-size: 18px; font-weight: bold; padding: 15px; width: 100%;">CALCULAR TOTALES</button>
+    <div id="result-box" style="background-color: #f1f8e9; border-radius: 12px; border: 1px solid rgb(76, 175, 80); box-sizing: border-box; display: none; margin-top: 25px; padding: 20px; text-align: left;">
+    <h3 style="border-bottom: 1px solid rgb(200, 230, 201); color: #2e7d32; margin: 0px 0px 15px; padding-bottom: 8px; text-align: center;">RESULTADOS FINALES:</h3>
+    
+    <p style="font-size: 16px; margin: 8px 0px;">⚖️ Peso Aceites: <span id="totalGrasas" style="font-weight: bold;">0</span> g</p>
+    <p style="color: #d32f2f; font-size: 18px; font-weight: bold; margin: 10px 0px;">🔥 Sosa (NaOH): <span id="totalSosa">0</span> g</p>
+    <p style="color: #1976d2; font-size: 18px; font-weight: bold; margin: 10px 0px;">🌊 Agua (Concentración=30%): <span id="totalAgua">0</span> g</p>
+
+    <div style="background-color: #fff3e0; border: 1px solid #ffb74d; border-radius: 10px; padding: 15px; margin: 15px 0px;">
+        <label style="display: block; font-weight: bold; color: #e65100; margin-bottom: 5px;">Grados Alcohol (Cocuy/Ginebra):</label>
+        <input type="number" id="gradosAlcohol" value="40" style="border-radius: 5px; border: 1px solid #ffb74d; padding: 8px; width: 60px; margin-bottom: 10px;">
+        <button onclick="calcularExtractoPermitido()" style="background-color: #4caf50; color: white; border: none; border-radius: 5px; padding: 8px 12px; cursor: pointer; font-weight: bold; width: 100%;">CLIC EXTRACTO PERMITIDO (2,5%)</button>
+        <p id="resExtracto" style="color: #bf360c; font-size: 15px; font-weight: bold; margin-top: 10px; text-align: center;"></p>
+    </div>
+
+    <p style="color: #e67e22; font-size: 18px; font-weight: bold; margin: 10px 0px;">📊 Índice de Yodo: <span id="resultadoYodo">0.00</span></p>
+    <p id="alertaYodo" style="color: #d32f2f; font-size: 13px; font-weight: bold; margin: 5px 0px;"></p>
+    <p style="color: #666666; font-size: 12px; font-style: italic; margin-top: 10px;">* CONCENTRACIÓN SEGÚN INGENIERÍA JABONILANDIA.</p>
+</div>
+  </div>
+</div>
+<script>
+ 
+const baseYodo = {
+    "Soya": 130, "Girasol": 132, "Maíz": 136, "Coco": 9, "Palma": 52,
+    "Oliva": 82, "Cerdo": 58, "Vaca": 141, "Cacao": 137, "Ricino": 128,
+    "Almendras": 139, "Karité": 128, "Abeja": 0.067, "Germen": 131, "Uva": 133
+};
+
+function agregarFila() {
+    const container = document.getElementById('aceites-container');
+    const filas = document.querySelectorAll('.fila-aceite');
+    const nuevaFila = filas[0].cloneNode(true);
+    nuevaFila.querySelector('.oilAmount').value = '';
+    container.appendChild(nuevaFila);
+}
+
+function calcularTodo() {
+    let sosaTeorica = 0; 
+    let grasasTot = 0;
+    let sumaYodoPonderado = 0;
+    
+    const filas = document.querySelectorAll('.fila-aceite');
+    const descuento = parseFloat(document.getElementById('superFat').value);
+
+    filas.forEach(fila => {
+        const select = fila.querySelector('.oilSelect');
+        const gr = parseFloat(fila.querySelector('.oilAmount').value) || 0;
+        const sap = parseFloat(select.value);
+        const nombreAceite = select.options[select.selectedIndex].text;
+
+        if (gr > 0) {
+            grasasTot += gr;
+            sosaTeorica += (gr * sap);
+            
+            // --- CÁLCULO DE YODO ---
+            let iyAceite = 0;
+            for (let clave in baseYodo) {
+                if (nombreAceite.includes(clave)) {
+                    iyAceite = baseYodo[clave];
+                    break;
+                }
+            }
+            sumaYodoPonderado += (gr * iyAceite);
+        }
+    });
+
+    if (grasasTot === 0) {
+        alert("Por favor, ingresa los gramos de tus aceites.");
+        return;
+    }
+
+    // --- LÓGICA TÉCNICA DE SOSA Y AGUA ---
+    const sosaFinal = sosaTeorica * (1 - descuento);
+    const aguaTot = (sosaTeorica / 0.30) - sosaTeorica; 
+    const iyFinal = (sumaYodoPonderado / grasasTot).toFixed(2);
+
+    // --- MOSTRAR RESULTADOS ---
+    document.getElementById('totalGrasas').innerText = grasasTot.toFixed(2);
+    document.getElementById('totalSosa').innerText = sosaFinal.toFixed(2);
+    document.getElementById('totalAgua').innerText = aguaTot.toFixed(2);
+    document.getElementById('resultadoYodo').innerText = iyFinal;
+    document.getElementById('result-box').style.display = 'block';
+
+    // --- ALERTA DE INGENIERÍA BOTÁNICA ---
+    const alerta = document.getElementById('alertaYodo');
+    if (parseFloat(iyFinal) > 70) {
+        alerta.innerHTML = "⚠️ RIESGO DE OXIDACIÓN ALTO: Revise bien sus aceites.";
+        alerta.style.color = "#d32f2f";
+    } else {
+        alerta.innerHTML = "✅ MEZCLA ESTABLE: Su jabón tiene un buen blindaje natural.";
+        alerta.style.color = "#2e7d32";
+    }
+}
+function calcularExtractoPermitido() {
+    // Obtenemos el peso que ya calculó la función principal
+    const grasas = parseFloat(document.getElementById('totalGrasas').innerText);
+    const grados = parseFloat(document.getElementById('gradosAlcohol').value);
+    
+    if (grasas <= 0) {
+        alert("Primero debe calcular los totales de la mezcla.");
+        return;
+    }
+    
+    // Regla Maestra de Ciro Mellado: 2,5% de alcohol puro
+    const limitePuro = grasas * 0.025;
+    const pesoExtracto = (limitePuro / (grados / 100)).toFixed(2);
+    
+    document.getElementById('resExtracto').innerHTML = "✅ Máximo permitido: " + pesoExtracto + " g de extracto.";
+}
+</script>

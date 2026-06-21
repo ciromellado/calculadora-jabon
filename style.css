@@ -1,0 +1,10 @@
+/* Ocultar la calculadora por defecto al cargar la página */
+#calculator-screen {
+    display: none !important;
+}
+
+/* Opcional: Estilo para la pantalla de login para que se vea bien */
+#auth-screen {
+    text-align: center;
+    padding: 20px;
+}
