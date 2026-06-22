@@ -1,7 +1,7 @@
 function verificarToken() {
     // El .trim() elimina los espacios al principio y al final
     const inputToken = document.getElementById('token-input').value.trim();
-    const tokensPermitidos = ["USUARIO1","ADMIN2026","CAROLINA0808","JABON-CASTILLA"];
+    const tokensPermitidos = ["USUARIO1","ADMIN2026","CAROLINA0808","JABONCASTILLA"];
 
     if (tokensPermitidos.includes(inputToken)) {
         localStorage.setItem('auth', 'true');
